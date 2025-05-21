@@ -16,10 +16,14 @@ def game():
     third_digit = input_val%10;
         #flag for bagels
     bagels_fg = True
+    pico1_fg = False
+    pico2_fg = False
+    pico3_fg = False
 
     #check for pico (position, value correct)
     if win_first_digit == first_digit:
         print("pico ", end="")
+        pico1_fg = True
         bagels_fg = False
     # check for fermi (value correct, position wrong)
     elif (win_first_digit == second_digit or
@@ -29,6 +33,7 @@ def game():
     if win_second_digit == second_digit:
         print("pico ", end="")
         bagels_fg = False
+        pico2_fg = True
     elif (win_second_digit == first_digit or 
           win_second_digit == third_digit):
         print("fermi ", end="")
@@ -37,14 +42,25 @@ def game():
     if win_third_digit == third_digit:
         print("pico ", end="")
         bagels_fg = False
+        pico3_fg = True
     elif (win_third_digit == first_digit or 
           win_third_digit == second_digit):
         print("fermi ", end="")
         bagels_fg = False 
+    print("")
 
     #check for bagels (all wrong)
     if bagels_fg == True:
         print("bagels")
+
+    #return if the player has guessed the right value
+    if (pico1_fg == True and 
+        pico2_fg == True and 
+        pico3_fg == True):
+        return True
+    else: 
+        return False
+        
 
 # Start Program: 
 print("Welcome to the bagels game, try to guess a 3 digit number \n")
@@ -53,7 +69,14 @@ print("\t Fermi = 1 digit is correct (wrong position)")
 print("\t Bagels= no digit is correct")
 
 # play 10 rounds
-game()
+user_score = 1000
 
+while user_score != 0: 
+    game_result = game()
+    if game_result == True:
+        print("Win, your score is = " + str(user_score))
+        break;
+    else:
+        user_score = user_score - 100;
 
-
+print("You lost")
