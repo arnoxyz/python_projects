@@ -1,10 +1,13 @@
-# TODO: generate a random 3 digit variable
-win_val = 123; # fixed value for implementing and testing
-win_first_digit = 1;
-win_second_digit = 2;
-win_third_digit = 3;
+# Implementation of the game bagels:
 
-def game():
+# Implementation details:
+# user input as integer
+# divid/modulo operation used to get the digits
+# logic with boolean flags used to calculate the game logic
+
+import random
+
+def game(win_first_digit, win_second_digit, win_third_digit):
     # Prompt user
     print("Insert a 3 digit number: \n")
     # Read input and convert Input from user 
@@ -22,36 +25,36 @@ def game():
 
     #check for pico (position, value correct)
     if win_first_digit == first_digit:
-        print("pico ", end="")
+        print("pico (correct value, correct position)", end="")
         pico1_fg = True
         bagels_fg = False
     # check for fermi (value correct, position wrong)
     elif (win_first_digit == second_digit or
           win_first_digit == third_digit):
-        print("fermi ", end="")
+        print("fermi (correct value, wrong position)", end="")
         bagels_fg = False
     if win_second_digit == second_digit:
-        print("pico ", end="")
+        print("pico (correct value, correct position)", end="")
         bagels_fg = False
         pico2_fg = True
     elif (win_second_digit == first_digit or 
           win_second_digit == third_digit):
-        print("fermi ", end="")
+        print("fermi (correct value, wrong position)", end="")
         bagels_fg = False
 
     if win_third_digit == third_digit:
-        print("pico ", end="")
+        print("pico (correct value, correct position)", end="")
         bagels_fg = False
         pico3_fg = True
     elif (win_third_digit == first_digit or 
           win_third_digit == second_digit):
-        print("fermi ", end="")
+        print("fermi (correct value, wrong position)", end="")
         bagels_fg = False 
     print("")
 
     #check for bagels (all wrong)
     if bagels_fg == True:
-        print("bagels")
+        print("bagels (nothing right here)")
 
     #return if the player has guessed the right value
     if (pico1_fg == True and 
@@ -71,8 +74,15 @@ print("\t Bagels= no digit is correct")
 # play 10 rounds
 user_score = 1000
 
+# Gen Solution
+number = random.randint(100, 999)
+win_val = number
+win_first_digit = number//100
+win_second_digit = (number//10)%10
+win_third_digit = number%10
+
 while user_score != 0: 
-    game_result = game()
+    game_result = game(win_first_digit, win_second_digit, win_third_digit)
     if game_result == True:
         print("Win, your score is = " + str(user_score))
         break;
