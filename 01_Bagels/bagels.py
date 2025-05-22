@@ -65,28 +65,28 @@ def game(win_first_digit, win_second_digit, win_third_digit):
         return False
         
 
-# Start Program: 
-print("Welcome to the bagels game, try to guess a 3 digit number \n")
-print("\t Pico  = 1 digit is correct (right position)")
-print("\t Fermi = 1 digit is correct (wrong position)")
-print("\t Bagels= no digit is correct")
+def main(): 
+    # Start Program: 
+    print("Welcome to the bagels game, try to guess a 3 digit number \n")
+    print("\t Pico  = 1 digit is correct (right position)")
+    print("\t Fermi = 1 digit is correct (wrong position)")
+    print("\t Bagels= no digit is correct")
 
-# play 10 rounds
-user_score = 1000
+    # Gen Solution
+    number = random.randint(100, 999)
+    win_val = number
+    win_first_digit = number//100
+    win_second_digit = (number//10)%10
+    win_third_digit = number%10
 
-# Gen Solution
-number = random.randint(100, 999)
-win_val = number
-win_first_digit = number//100
-win_second_digit = (number//10)%10
-win_third_digit = number%10
-
-while user_score != 0: 
-    game_result = game(win_first_digit, win_second_digit, win_third_digit)
-    if game_result == True:
-        print("Win, your score is = " + str(user_score))
-        break;
-    else:
-        user_score = user_score - 100;
-
-print("You lost")
+    user_score = 1000
+    while True
+        game_result = game(win_first_digit, win_second_digit, win_third_digit)
+        if game_result == True:
+            print("Win, your score is = " + str(user_score))
+            break;
+        elif user_score == 0: 
+            print("You lost")
+            break;
+        else:
+            user_score = user_score - 100;
