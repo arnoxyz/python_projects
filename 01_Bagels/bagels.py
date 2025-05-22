@@ -80,7 +80,8 @@ def main():
     win_third_digit = number%10
 
     user_score = 1000
-    while True
+    while True:
+        print("\nYour socre is: " + str(user_score))
         game_result = game(win_first_digit, win_second_digit, win_third_digit)
         if game_result == True:
             print("Win, your score is = " + str(user_score))
@@ -90,3 +91,8 @@ def main():
             break;
         else:
             user_score = user_score - 100;
+
+
+
+
+main()
