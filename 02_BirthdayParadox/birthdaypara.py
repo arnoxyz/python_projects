@@ -26,8 +26,8 @@ def check_dublicate_birthdays(bdays):
 
 def main():
     #make my life easier with the first protoype by hardcoding: 
-    bdays_number = 10 #TODO: Get Input from user: Number of Birthdays
-    sim_number   = 100 #TODO: Get Input from user: Number of Simulations
+    bdays_number = int(input("insert number of birthdays: "))
+    sim_number   = int(input("insert number of simulations: "))
     wins = 0;
 
     for _ in range(sim_number):
