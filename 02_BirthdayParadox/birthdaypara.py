@@ -27,25 +27,14 @@ def check_dublicate_birthdays(bdays):
 def main():
     #make my life easier with the first protoype by hardcoding: 
     bdays_number = 10 #TODO: Get Input from user: Number of Birthdays
-    sim_number   = 1 #TODO: Get Input from user: Number of Simulations
+    sim_number   = 100 #TODO: Get Input from user: Number of Simulations
     wins = 0;
 
     for _ in range(sim_number):
-        #genBirthdays(int NumberOfBirthdays)
         birthdays = [gen_birthdays() for _ in range(bdays_number)]
-        print(birthdays)
-
-        #checkBirthday(Birthdays[]) 
         if (check_dublicate_birthdays(birthdays) == True): 
             wins+=1;
+    print("probabilty is: " + str((wins/sim_number)*100) + " %")
 
-        print(wins)
-        #brute foce check the birthdays O(n^2)
-            #-> return 
-            #   true=win (there are two birthdays on the same day)
-            #   false=lose (no birthdays on the same day)
-
-    #TODO: calcPropability
-        # prop=Wins/NumberOfSims
 
 main()
