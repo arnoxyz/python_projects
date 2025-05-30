@@ -13,4 +13,16 @@ def get_birthdays(number_of_birthdays):
         birthdays.append(new_bday)
     return birthdays;
 
-print(get_birthdays(10))
+
+def get_match(birthdays):
+    # creates a set of the birthday list (so duplicates get removed)
+    # then checks if both lists are equal length
+    if len(birthdays) == len(set(birthdays)):
+        return False
+
+    # if the two lists are not of equal length => there is a duplicate (same birthday)
+    return True
+
+bdays = get_birthdays(10)
+print(get_match(bdays))
+
