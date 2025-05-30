@@ -22,16 +22,21 @@ def get_match(birthdays):
     # if the two lists are not of equal length => there is a duplicate (same birthday)
     return True
 
-def get_bdays():
+def get_bdays_input():
     print("Hom many brithdays should be generated? (Max 100))")
     while True:
         bdays_input = input("> ")
         if bdays_input.isdecimal() and (0 < int(bdays_input) <= 100):
             break;
         print("Wrong Input!! -> needs to be a integer value between (0,100]")
-    return bdays_input
+    return int(bdays_input)
 
 
-#bdays = get_birthdays(10)
-#print(get_match(bdays))
-print(get_bdays())
+bdays_count = get_bdays_input()
+bdays_dates = get_birthdays(bdays_count)
+
+# print out the generated birthdays
+for birthday in bdays_dates:
+    date_text = "[{}.{}] ".format(birthday.day, birthday.month)
+    print(date_text)
+
