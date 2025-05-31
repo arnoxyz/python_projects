@@ -31,12 +31,27 @@ def get_bdays_input():
         print("Wrong Input!! -> needs to be a integer value between (0,100]")
     return int(bdays_input)
 
+def print_bdays(bdays_dates):
+    for birthday in bdays_dates:
+        date_text = "[{}.{}] ".format(birthday.day, birthday.month)
+        print(date_text)
 
-bdays_count = get_bdays_input()
-bdays_dates = get_birthdays(bdays_count)
 
-# print out the generated birthdays
-for birthday in bdays_dates:
-    date_text = "[{}.{}] ".format(birthday.day, birthday.month)
-    print(date_text)
+def main():
+    # get bday count from user 
+    bdays_count = get_bdays_input()
 
+    # simulate 100_000 
+    bdays_matches = 0
+
+    for i in range(100_000):
+        bdays_dates = get_birthdays(bdays_count)
+        if(get_match(bdays_dates)):
+            bdays_matches+=1
+
+    print("from 100_000 simulations with {} gen bdays per year, matched {}".format(bdays_count, bdays_matches));
+    print("this means: {} % chance that two persons have the same birthday when there are {} people".format(round((bdays_matches/100_000)*100,2),bdays_count))
+   
+
+
+main()
