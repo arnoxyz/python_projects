@@ -23,12 +23,21 @@ def get_match(birthdays):
     return True
 
 def get_bdays_input():
-    print("Hom many brithdays should be generated? (Max 100))")
+    print("Hom many brithdays should be generated? (Max. 100))")
     while True:
         bdays_input = input("> ")
         if bdays_input.isdecimal() and (0 < int(bdays_input) <= 100):
             break;
         print("Wrong Input!! -> needs to be a integer value between (0,100]")
+    return int(bdays_input)
+
+def get_sim_input():
+    print("Hom many simulations should be generated? (Max. 100_000))")
+    while True:
+        bdays_input = input("> ")
+        if bdays_input.isdecimal() and (0 < int(bdays_input) <= 100_000):
+            break;
+        print("Wrong Input!! -> needs to be a integer value between (0,100_000]")
     return int(bdays_input)
 
 def print_bdays(bdays_dates):
@@ -38,20 +47,20 @@ def print_bdays(bdays_dates):
 
 
 def main():
-    # get bday count from user 
+    # get inputs from user
     bdays_count = get_bdays_input()
+    sim_count = get_sim_input()
 
     # simulate 100_000 
     bdays_matches = 0
 
-    for i in range(100_000):
+    for i in range(sim_count):
         bdays_dates = get_birthdays(bdays_count)
         if(get_match(bdays_dates)):
             bdays_matches+=1
 
-    print("from 100_000 simulations with {} gen bdays per year, matched {}".format(bdays_count, bdays_matches));
-    print("this means: {} % chance that two persons have the same birthday when there are {} people".format(round((bdays_matches/100_000)*100,2),bdays_count))
+    print("from {} simulations with {} gen bdays per year, matched {}".format(sim_count, bdays_count, bdays_matches));
+    print("this means: {} % chance that two persons have the same birthday when there are {} people".format(round((bdays_matches/sim_count)*100,2),bdays_count))
    
-
 
 main()
