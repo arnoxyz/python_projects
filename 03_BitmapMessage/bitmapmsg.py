@@ -22,10 +22,14 @@ bitmap = """
 """
 
 
-replace_with = 'A'
-
+replace_with = "Austria"
+j = 0;
 for i in bitmap:
     if i=='*':
-        print(replace_with, end="")
+        print(replace_with[j], end="")
+        j=j+1
+        if j == 7:
+            j=0
     else:
         print(i, end="")
+    
