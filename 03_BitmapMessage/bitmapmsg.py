@@ -22,13 +22,15 @@ bitmap = """
 """
 
 
-replace_with = "Austria"
+#replace_with = "Austria"
+replace_with = input("insert a word: ")
+
 j = 0;
 for i in bitmap:
     if i=='*':
         print(replace_with[j], end="")
         j=j+1
-        if j == 7:
+        if j == len(replace_with):
             j=0
     else:
         print(i, end="")
