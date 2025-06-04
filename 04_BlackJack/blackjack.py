@@ -20,12 +20,26 @@ def gen_deck():
             card = {
                 "rank": rank,
                 "suit": suit,
-                "value": values[rank]
+                "value": values[rank],
+                "active": False
             }
             deck.append(card)
 
     return deck;
 
 
+def pick_card(deck):
+    choices = deck
+    while True:
+        pick = random.choice(choices)
+        if pick['active'] == False:
+            pick['active'] = True;
+            return pick
+
+player_cards = [];
+dealer_cards = [];
 deck = gen_deck();
-print(deck)
+
+player_cards.append(pick_card(deck))
+player_cards.append(pick_card(deck))
+print(player_cards)
