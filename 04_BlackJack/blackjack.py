@@ -92,16 +92,24 @@ def display_cards(cards):
     
     print(f"Hand value: {sum}")
 
+
+# GAME-START:
 player_cards = [];
 dealer_cards = [];
+# gen new deck
 deck = gen_deck();
-
-# debug stuff
+# give the player two cards 
 player_cards.append(pick_card(deck))
 player_cards.append(pick_card(deck))
-print(player_cards)
-print(add_cards(player_cards))
 display_cards(player_cards)
 
+# ask user
+player_input = (input("Stay (S), Hit (H) -> ")).upper()
 
+print(player_input)
 
+if player_input == "H":
+    player_cards.append(pick_card(deck))
+    display_cards(player_cards)
+if player_input == "S":
+    print("player stays")
