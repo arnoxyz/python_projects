@@ -37,7 +37,7 @@ def pick_card(deck):
             pick['active'] = True;
             return pick
 
-def add_cards(cards):
+def card_value(cards):
     sum = 0
     for card in cards: 
         sum = sum + card['value']
@@ -104,12 +104,18 @@ player_cards.append(pick_card(deck))
 display_cards(player_cards)
 
 # ask user
-player_input = (input("Stay (S), Hit (H) -> ")).upper()
+game_status = []
+while True:
+    player_input = (input("Stay (S), Hit (H) -> ")).upper()
+    if player_input == "H":
+        player_cards.append(pick_card(deck))
+        display_cards(player_cards)
+    if card_value(player_cards) > 21: 
+        print("PLAYER-LOST")
+        game_status = "Player_lost"
+        break
+    if player_input == "S":
+        print("PLAYER-STAYS")
+        game_status = "Player_stays"
+        break
 
-print(player_input)
-
-if player_input == "H":
-    player_cards.append(pick_card(deck))
-    display_cards(player_cards)
-if player_input == "S":
-    print("player stays")
