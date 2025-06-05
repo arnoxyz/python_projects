@@ -21,7 +21,8 @@ def gen_deck():
                 "rank": rank,
                 "suit": suit,
                 "value": values[rank],
-                "active": False
+                "active": False,
+                "visible": True
             }
             deck.append(card)
 
@@ -36,10 +37,71 @@ def pick_card(deck):
             pick['active'] = True;
             return pick
 
+def add_cards(cards):
+    sum = 0
+    for card in cards: 
+        sum = sum + card['value']
+    return sum
+
+def display_cards(cards):
+    sum = 0
+
+    card_lines = []
+    for card in cards: 
+        suit_symbols = {
+            "Hearts": "♥",
+            "Diamonds": "♦",
+            "Clubs": "♣",
+            "Spades": "♠"
+        }
+        rank = card["rank"]
+        suit = suit_symbols[card["suit"]]
+        rank_left = rank.ljust(2)
+        rank_right = rank.rjust(2)
+
+        value = card['value']
+        sum += value
+
+         # Pad rank for display
+        rank_str = rank.ljust(2) if len(rank) == 1 else rank
+
+        # ASCII card template
+        card_lines.append([
+            "┌─────────┐",
+           f"│ {rank_left}      │",
+            "│         │",
+           f"│    {suit}    │",
+            "│         │",
+           f"│      {rank_right} │",
+            "└─────────┘"
+        ])
+
+    # Print Cards side by side
+          #"┌─────────┐",          # Line 0
+          #"│ A       │",          # Line 1
+          #"│         │",          # Line 2
+          #"│    ♠    │",          # Line 3
+          #"│         │",          # Line 4
+          #"│       A │",          # Line 5
+          #"└─────────┘"           # Line 6
+        
+    # glue all cards together line by line
+    for i in range(7):
+        #["┌─────────┐", "┌─────────┐", "┌─────────┐"]
+        print("  ".join(card[i] for card in card_lines))
+    
+    print(f"Hand value: {sum}")
+
 player_cards = [];
 dealer_cards = [];
 deck = gen_deck();
 
+# debug stuff
 player_cards.append(pick_card(deck))
 player_cards.append(pick_card(deck))
 print(player_cards)
+print(add_cards(player_cards))
+display_cards(player_cards)
+
+
+
