@@ -92,6 +92,20 @@ def display_cards(cards):
     
     print(f"Hand value: {sum}")
 
+def player_turn(player_deck):
+    game_status = ""
+    while True:
+        player_input = (input("Stay (S), Hit (H) -> ")).upper()
+        if player_input == "H":
+            player_cards.append(pick_card(deck))
+            display_cards(player_cards)
+        if card_value(player_cards) > 21: 
+            game_status = "Player_lost"
+            break
+        if player_input == "S":
+            game_status = "Player_stays"
+            break
+    return game_status;
 
 # GAME-START:
 player_cards = [];
@@ -104,18 +118,6 @@ player_cards.append(pick_card(deck))
 display_cards(player_cards)
 
 # ask user
-game_status = []
-while True:
-    player_input = (input("Stay (S), Hit (H) -> ")).upper()
-    if player_input == "H":
-        player_cards.append(pick_card(deck))
-        display_cards(player_cards)
-    if card_value(player_cards) > 21: 
-        print("PLAYER-LOST")
-        game_status = "Player_lost"
-        break
-    if player_input == "S":
-        print("PLAYER-STAYS")
-        game_status = "Player_stays"
-        break
-
+game_status = ""
+game_status = player_turn(player_cards)
+print(game_status)
