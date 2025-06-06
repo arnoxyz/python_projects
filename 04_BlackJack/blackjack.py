@@ -112,12 +112,20 @@ player_cards = [];
 dealer_cards = [];
 # gen new deck
 deck = gen_deck();
+
+# give dealer two cards
+print("Dealer Cards")
+dealer_cards.append(pick_card(deck))
+dealer_cards.append(pick_card(deck))
+display_cards(dealer_cards)
+
 # give the player two cards 
+print("Your Cards")
 player_cards.append(pick_card(deck))
 player_cards.append(pick_card(deck))
 display_cards(player_cards)
 
 # ask user
-game_status = ""
-game_status = player_turn(player_cards)
-print(game_status)
+#game_status = ""
+#game_status = player_turn(player_cards)
+#print(game_status)
