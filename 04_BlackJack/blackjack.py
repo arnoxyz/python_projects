@@ -43,7 +43,8 @@ def pick_card(current_deck, visible=True):
 def card_value(cards):
     sum = 0
     for card in cards: 
-        sum = sum + card['value']
+        if card['visible'] == True:
+            sum = sum + card['value']
     return sum
 
 def display_cards(cards):
@@ -108,7 +109,7 @@ def display_cards(cards):
         #["┌─────────┐", "┌─────────┐", "┌─────────┐"]
         print("  ".join(card[i] for card in card_lines))
     
-    print(f"Hand value: {sum}")
+    #print(f"Hand value: {sum}")
 
 def player_turn(player_deck):
     game_status = ""
@@ -132,15 +133,15 @@ dealer_cards = [];
 deck = gen_deck();
 
 # give dealer two cards
-print("Dealer Cards")
 dealer_cards.append(pick_card(deck, visible=False))
 dealer_cards.append(pick_card(deck))
+print("Dealer Cards: Value =", card_value(dealer_cards))
 display_cards(dealer_cards)
 
 # give the player two cards 
-print("Your Cards")
 player_cards.append(pick_card(deck))
 player_cards.append(pick_card(deck))
+print("Your Cards: Value =", card_value(player_cards))
 display_cards(player_cards)
 
 # ask user
