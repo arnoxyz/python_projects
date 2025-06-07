@@ -29,12 +29,15 @@ def gen_deck():
     return deck;
 
 
-def pick_card(deck):
-    choices = deck
+def pick_card(current_deck, visible=True):
+    choices = current_deck
     while True:
         pick = random.choice(choices)
         if pick['active'] == False:
-            pick['active'] = True;
+            pick['active'] = True
+
+            if visible == False:
+                pick['visible'] = False
             return pick
 
 def card_value(cards):
@@ -48,33 +51,48 @@ def display_cards(cards):
 
     card_lines = []
     for card in cards: 
-        suit_symbols = {
-            "Hearts": "♥",
-            "Diamonds": "♦",
-            "Clubs": "♣",
-            "Spades": "♠"
-        }
-        rank = card["rank"]
-        suit = suit_symbols[card["suit"]]
-        rank_left = rank.ljust(2)
-        rank_right = rank.rjust(2)
-
-        value = card['value']
-        sum += value
-
-         # Pad rank for display
-        rank_str = rank.ljust(2) if len(rank) == 1 else rank
-
-        # ASCII card template
-        card_lines.append([
+        if card['visible'] == False:
+            face_down_card = [
             "┌─────────┐",
-           f"│ {rank_left}      │",
             "│         │",
-           f"│    {suit}    │",
             "│         │",
-           f"│      {rank_right} │",
+            "│         │",
+            "│         │",
+            "│         │",
             "└─────────┘"
-        ])
+            ]
+            card_lines.append(face_down_card);
+
+
+        if card['visible'] == True:
+            suit_symbols = {
+                "Hearts": "♥",
+                "Diamonds": "♦",
+                "Clubs": "♣",
+                "Spades": "♠"
+            }
+            rank = card["rank"]
+            suit = suit_symbols[card["suit"]]
+            rank_left = rank.ljust(2)
+            rank_right = rank.rjust(2)
+
+            value = card['value']
+            sum += value
+
+             # Pad rank for display
+            rank_str = rank.ljust(2) if len(rank) == 1 else rank
+
+            # ASCII card template
+            card_lines.append([
+                "┌─────────┐",
+               f"│ {rank_left}      │",
+                "│         │",
+               f"│    {suit}    │",
+                "│         │",
+               f"│      {rank_right} │",
+                "└─────────┘"
+            ])
+
 
     # Print Cards side by side
           #"┌─────────┐",          # Line 0
@@ -115,7 +133,7 @@ deck = gen_deck();
 
 # give dealer two cards
 print("Dealer Cards")
-dealer_cards.append(pick_card(deck))
+dealer_cards.append(pick_card(deck, visible=False))
 dealer_cards.append(pick_card(deck))
 display_cards(dealer_cards)
 
