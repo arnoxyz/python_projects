@@ -138,17 +138,19 @@ def dealer_turn(dealer_cards, player_cards, deck):
 
 
 
-    while True:
-        if card_value(dealer_cards) < dealer_count_rule :
-            dealer_cards.append(pick_card(deck))
-            display_game(dealer_cards, player_cards)
-        if card_value(dealer_cards) > 21: 
-            return "Dealer_lost"
-        if card_value(dealer_cards) > dealer_count_rule :
-            display_game(dealer_cards, player_cards)
-            return "Dealer_stays"
+    while card_value(dealer_cards) < dealer_count_rule :
+        dealer_cards.append(pick_card(deck))
+        display_game(dealer_cards, player_cards)
+
+
+    if card_value(dealer_cards) > 21: 
+        return "Dealer_lost"
+    if card_value(dealer_cards) > dealer_count_rule :
+        display_game(dealer_cards, player_cards)
+        return "Dealer_stays"
 
 def display_game(dealer_cards, player_cards):
+    print("\n");
     print("Dealer Cards: Value =", card_value(dealer_cards))
     display_cards(dealer_cards)
     print("Your Cards: Value =", card_value(player_cards))
@@ -160,6 +162,7 @@ def main():
 
     # INIT-GAME
     game_status = ""
+    player_score_start = 100
     player_score = 100
     player_bet = 50
     player_cards = []
@@ -202,5 +205,8 @@ def main():
                 game_status = "Player_win"
 
     print(game_status)
+    print("Player Score before \t= "+str(player_score_start))
+    print("Player Score now \t= "+str(player_score))
+    print("Diff \t\t\t= "+str(player_score-player_score_start))
 
 main()
