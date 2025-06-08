@@ -113,6 +113,9 @@ def display_cards(cards):
 
 def player_turn(dealer_cards, player_cards, deck):
     game_status = ""
+    if card_value(player_cards) == 21: 
+        return "Black Jack!"
+
     while True:
         player_input = (input("Stay (S), Hit (H) -> ")).upper()
         if player_input == "H":
@@ -126,6 +129,25 @@ def player_turn(dealer_cards, player_cards, deck):
             break
     return game_status;
 
+def dealer_turn(dealer_cards, player_cards, deck):
+    dealer_count_rule = 16 #until this value the dealer must take another card
+    game_status = ""
+
+    #reveal the dealer card and display it
+    dealer_cards[0]['visible'] = True
+
+
+
+    while True:
+        if card_value(dealer_cards) < dealer_count_rule :
+            dealer_cards.append(pick_card(deck))
+            display_game(dealer_cards, player_cards)
+        if card_value(dealer_cards) > 21: 
+            return "Dealer_lost"
+        if card_value(dealer_cards) > dealer_count_rule :
+            display_game(dealer_cards, player_cards)
+            return "Dealer_stays"
+
 def display_game(dealer_cards, player_cards):
     print("Dealer Cards: Value =", card_value(dealer_cards))
     display_cards(dealer_cards)
@@ -138,11 +160,12 @@ def main():
 
     # INIT-GAME
     game_status = ""
-    player_score = 100;
-    player_cards = [];
-    dealer_cards = [];
+    player_score = 100
+    player_bet = 50
+    player_cards = []
+    dealer_cards = []
     # gen new deck
-    deck = gen_deck();
+    deck = gen_deck()
     # give dealer two cards
     dealer_cards.append(pick_card(deck, visible=False))
     dealer_cards.append(pick_card(deck))
@@ -153,7 +176,31 @@ def main():
     # USER-TURN
     display_game(dealer_cards, player_cards)
     game_status = player_turn(dealer_cards, player_cards, deck)
-    print(game_status)
+
+    if game_status == "Black Jack!":
+        player_score = player_score + 2*player_bet;
+    if game_status == "Player_lost":
+        player_score = player_score - player_bet;
+
     # DEALER-TURN
+    if game_status == "Player_stays":
+        game_status = dealer_turn(dealer_cards, player_cards, deck)
+        if game_status == "Dealer_lost":
+            player_score = player_score + player_bet;
+        if game_status == "Dealer_stays":
+            dealer_val = card_value(dealer_cards)
+            player_val = card_value(player_cards)
+
+            if dealer_val == player_val:
+                player_score = player_score + player_bet
+                game_status = "Tie"
+            if dealer_val > player_val: 
+                player_score = player_score - player_bet
+                game_status = "Player_lost"
+            if dealer_val < player_val:
+                player_score = player_score + player_bet
+                game_status = "Player_win"
+
+    print(game_status)
 
 main()
