@@ -111,13 +111,13 @@ def display_cards(cards):
     
     #print(f"Hand value: {sum}")
 
-def player_turn(player_deck):
+def player_turn(dealer_cards, player_cards, deck):
     game_status = ""
     while True:
         player_input = (input("Stay (S), Hit (H) -> ")).upper()
         if player_input == "H":
             player_cards.append(pick_card(deck))
-            display_cards(player_cards)
+            display_game(dealer_cards, player_cards)
         if card_value(player_cards) > 21: 
             game_status = "Player_lost"
             break
@@ -126,25 +126,34 @@ def player_turn(player_deck):
             break
     return game_status;
 
-# GAME-START:
-player_cards = [];
-dealer_cards = [];
-# gen new deck
-deck = gen_deck();
+def display_game(dealer_cards, player_cards):
+    print("Dealer Cards: Value =", card_value(dealer_cards))
+    display_cards(dealer_cards)
+    print("Your Cards: Value =", card_value(player_cards))
+    display_cards(player_cards)
 
-# give dealer two cards
-dealer_cards.append(pick_card(deck, visible=False))
-dealer_cards.append(pick_card(deck))
-print("Dealer Cards: Value =", card_value(dealer_cards))
-display_cards(dealer_cards)
 
-# give the player two cards 
-player_cards.append(pick_card(deck))
-player_cards.append(pick_card(deck))
-print("Your Cards: Value =", card_value(player_cards))
-display_cards(player_cards)
+def main():
+    # GAME-START:
 
-# ask user
-#game_status = ""
-#game_status = player_turn(player_cards)
-#print(game_status)
+    # INIT-GAME
+    game_status = ""
+    player_score = 100;
+    player_cards = [];
+    dealer_cards = [];
+    # gen new deck
+    deck = gen_deck();
+    # give dealer two cards
+    dealer_cards.append(pick_card(deck, visible=False))
+    dealer_cards.append(pick_card(deck))
+    # give the player two cards 
+    player_cards.append(pick_card(deck))
+    player_cards.append(pick_card(deck))
+
+    # USER-TURN
+    display_game(dealer_cards, player_cards)
+    game_status = player_turn(dealer_cards, player_cards, deck)
+    print(game_status)
+    # DEALER-TURN
+
+main()
