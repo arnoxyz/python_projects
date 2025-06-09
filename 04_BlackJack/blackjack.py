@@ -150,21 +150,15 @@ def dealer_turn(dealer_cards, player_cards, deck):
         return "Dealer_stays"
 
 def display_game(dealer_cards, player_cards):
-    print("\n");
     print("Dealer Cards: Value =", card_value(dealer_cards))
     display_cards(dealer_cards)
     print("Your Cards: Value =", card_value(player_cards))
     display_cards(player_cards)
 
-
-def main():
-    # GAME-START:
-
+def play_one_round(player_bet, player_score):
     # INIT-GAME
     game_status = ""
     player_score_start = 100
-    player_score = 100
-    player_bet = 50
     player_cards = []
     dealer_cards = []
     # gen new deck
@@ -205,8 +199,28 @@ def main():
                 game_status = "Player_win"
 
     print(game_status)
-    print("Player Score before \t= "+str(player_score_start))
-    print("Player Score now \t= "+str(player_score))
-    print("Diff \t\t\t= "+str(player_score-player_score_start))
+    # print("Player Score before \t= "+str(player_score_start))
+    # print("Diff \t\t\t= "+str(player_score-player_score_start))
+    # print("Player Score now \t= "+str(player_score))
+    return player_score
 
+def main():
+    # GAME-START:
+    print("Welcome to BlackJack, you start with 100 free credits (your score)")
+    player_score = 100
+    while player_score > 0:
+        player_choice = input("Want to start a new game? (y/n) -> ")
+
+        if player_choice == 'y':
+            while True:
+                player_bet = int(input("How much do you want to bet? -> "))
+                if player_bet <= player_score:
+                    break
+
+            player_score = play_one_round(player_bet, player_score)
+            print("Score = "+str(player_score))
+        else: 
+            break;
+
+    print("\n \n Thanks for playing your final score is = "+str(player_score))
 main()
