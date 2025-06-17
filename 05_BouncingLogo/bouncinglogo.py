@@ -2,9 +2,14 @@
 # using module bext by Al Sweigart (https://github.com/asweigart/bext)
 import bext, time, sys
 
+def draw(text):
+    print("BALL", end="")
+    sys.stdout.flush()
+    time.sleep(0.1)
 
 def main():
     bext.clear()
+    bext.hide_cursor()
     bext.fg('black') 
     bext.bg('white') 
     text = "A" 
@@ -32,30 +37,47 @@ def main():
 
     x = 10
     y = 10
-    move_right = False
+
+    move_right = True
     move_left = False
-    move_down = False
+    move_down = True
     move_up = False
 
     while True: 
         bext.clear();
         bext.goto(x,y)
 
+
+        # Movements
         if move_right:
             if x < width-1:
                 x = x+1
+            else:
+                move_right = False
+                move_left = True
+
         if move_left:
             if x > 0:
                 x = x-1
+            else:
+                move_right = True
+                move_left = False
+
         if move_down:
             if y < height-1:
                 y = y+1
+            else:
+                move_down = False
+                move_up = True
+
         if move_up:
             if y > 0:
                 y = y-1
+            else:
+                move_down = True
+                move_up = False
 
-        print(text, end="")
-        sys.stdout.flush()
-        time.sleep(0.1)
+        draw(text)
+
 
 main()
