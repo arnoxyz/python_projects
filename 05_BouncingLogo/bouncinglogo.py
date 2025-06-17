@@ -11,8 +11,8 @@ def main():
     width, height = bext.size() #return current terminal size 
 
     # Coordinate: (x,y) 
-    x = 0;
-    y = 0;
+    x = 0
+    y = 0
 
     # Window: 
     # (0,0) --------------------------------- (Width-1, 0)
@@ -30,14 +30,32 @@ def main():
     right_down = (width-1,height-1)
     left_down = (0,height-1)
 
+    x = 10
+    y = 10
+    move_right = False
+    move_left = False
+    move_down = False
+    move_up = False
+
     while True: 
         bext.clear();
         bext.goto(x,y)
 
-        if x < width-1: 
-            x = x+1
+        if move_right:
+            if x < width-1:
+                x = x+1
+        if move_left:
+            if x > 0:
+                x = x-1
+        if move_down:
+            if y < height-1:
+                y = y+1
+        if move_up:
+            if y > 0:
+                y = y-1
+
         print(text, end="")
         sys.stdout.flush()
-        time.sleep(0.5)
+        time.sleep(0.1)
 
 main()
