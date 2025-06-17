@@ -1,6 +1,6 @@
 # Implementation of BouncingLogo 
 # using module bext by Al Sweigart (https://github.com/asweigart/bext)
-import bext, time, sys
+import bext, time, sys, random
 
 def draw(text):
     print("BALL", end="")
@@ -14,6 +14,12 @@ def main():
     bext.bg('white') 
     text = "A" 
     width, height = bext.size() #return current terminal size 
+
+    # Init Move:
+    move_right = False
+    move_left = False
+    move_down = False
+    move_up = False
 
     # Coordinate: (x,y) 
     x = 0
@@ -35,13 +41,22 @@ def main():
     right_down = (width-1,height-1)
     left_down = (0,height-1)
 
-    x = 10
-    y = 10
+    x = random.randint(0, 10000) % width-1;
+    y = random.randint(0, 10000) % height-1;
 
-    move_right = True
-    move_left = False
-    move_down = True
-    move_up = False
+    choice = random.randint(0, 10000) % 4
+    if choice == 0:
+        move_right = True
+        move_down = True
+    elif choice == 1:
+        move_right = True
+        move_up = True
+    elif choice == 2:
+        move_left = True
+        move_up = True
+    elif choice == 3:
+        move_left = True
+        move_down = True
 
     while True: 
         bext.clear();
@@ -55,21 +70,18 @@ def main():
             else:
                 move_right = False
                 move_left = True
-
         if move_left:
             if x > 0:
                 x = x-1
             else:
                 move_right = True
                 move_left = False
-
         if move_down:
             if y < height-1:
                 y = y+1
             else:
                 move_down = False
                 move_up = True
-
         if move_up:
             if y > 0:
                 y = y-1
