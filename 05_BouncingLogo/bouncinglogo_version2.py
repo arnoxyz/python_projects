@@ -22,7 +22,20 @@ def display_logo(logo):
 
 def move_logos(logos):
     for logo in logos:
+        if logo["direction"] == "ur":
+            logo["x"] += 2
+            logo["y"] -= 1
+        elif logo["direction"] == "ul":
+            logo["x"] -= 2
+            logo["y"] -= 1
+        elif logo["direction"] == "dr":
+            logo["x"] += 2
+            logo["y"] += 1
+        elif logo["direction"] == "dl":
+            logo["x"] -= 2
+            logo["y"] += 1
         display_logo(logo)
+        
 
 
 def main(): 
@@ -38,6 +51,8 @@ def main():
     logos = gen_logos(number_of_logos, width, height, colors, directions);
 
     # move logos
+    move_logos(logos)
+    move_logos(logos)
     move_logos(logos)
 
 main()
