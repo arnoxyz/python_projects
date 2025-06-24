@@ -19,3 +19,21 @@ Has 26 letters so there are possible 26 different shifts. So ShiftNumber mod 26
 ### Example:
 A shift by 1 means: So if you input ABC the output will be: BCD
 - (A -> B, B -> C, C -> D, ... ,  Z -> A)
+
+
+## Implementation using ord(), char()
+ord() = converts char to ASCII code,       example: ord("D") -> 68
+char() = converts ASCII code back to char, example: char(68) -> "D"
+
+### Normalize to make it easy to shift:
+ord('A') = 65, becomes 0, 'B' then 1
+To get this behavior just subract the base value. Then the shifting of that relative position.
+```
+current_position = ord(char) - base
+new_position = (current_position + shift) % 26
+```
+At the end to convert back to character you need to add the base back to the current
+value.
+```
+result += chr(new_position + base)
+```
