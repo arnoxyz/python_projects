@@ -37,3 +37,20 @@ value.
 ```
 result += chr(new_position + base)
 ```
+## Example
+### Encrypt Message
+```
+Insert Text -> Arno
+Shift Amount -> 3
+E = Encrypt (default) or D = Decrypt text? -> E
+Input Text:  Arno
+Output Text: Duqr
+```
+### Decrypt Message
+```
+Insert Text -> Duqr
+Shift Amount -> 3
+E = Encrypt (default) or D = Decrypt text? -> D
+Input Text:  Duqr
+Output Text: Arno
+```
