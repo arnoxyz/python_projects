@@ -2,6 +2,10 @@
 text = input("Insert Text -> ")
 shift = input("Shift Amount -> ")
 
+while not shift.isdigit():
+    print("Error please insert a valid integer [0,25]")
+    shift = input("Shift Amount -> ")
+
 def shift_text(text, shift):
     result = ""
     for char in text:
@@ -17,5 +21,5 @@ def shift_text(text, shift):
             result += char
     return result
 
-print("Input Text: " + text)
+print("Input Text:  " + text)
 print("Output Text: " + shift_text(text, int(shift)))
