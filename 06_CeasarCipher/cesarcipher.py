@@ -1,6 +1,6 @@
 # Implementaion of CaesarCipher
-text = "Hello World!"
-print("Input Test: " + text)
+text = input("Insert Text -> ")
+shift = input("Shift Amount -> ")
 
 def shift_text(text, shift):
     result = ""
@@ -17,4 +17,5 @@ def shift_text(text, shift):
             result += char
     return result
 
-print("Output Text: " + shift_text(text, 16))
+print("Input Text: " + text)
+print("Output Text: " + shift_text(text, int(shift)))
