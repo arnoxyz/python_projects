@@ -54,3 +54,16 @@ E = Encrypt (default) or D = Decrypt text? -> D
 Input Text:  Duqr
 Output Text: Arno
 ```
+## For Version2: Virtual Environment: for Pyperclip
+### Create
+```
+python3 -m venv venv
+```
+### Start
+```
+source venv/bin/acivate
+```
+### Install Package for that env: pyperclip
+```
+pip install pyperclip
+```
