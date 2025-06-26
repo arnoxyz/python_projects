@@ -1,5 +1,12 @@
 # Other implemenation of CesarCipher
 # added Feature: Copy result to the clipboard
-import pyperclip
+try:
+    import pyperclip
+except ImportError:
+    print("pyperclip not installed, so output will not be copied to clipboard...");
 
-pyperclip.copy("Hello World!")
+try:
+    pyperclip.copy("Hello World!")
+    print("Output copied to clipboard");
+except:
+    pass
