@@ -35,17 +35,31 @@ def user_input(config):
     return config
 
 def encrypt_text(key, input_text):
+    Characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     output_text = "";
+
+    for char in input_text:
+        num = Characters.find(char)
+        num = num + key
+        print(char)
+        print(num)
     return output_text;
 
+def output_to_user(config):
+    print("... ------Done------ ...")
+    print("Input_Text:  -> " + config["input_text"])
+    print("Output_Text: -> " + config["output_text"])
+    copy_text_to_clipboard(config["output_text"])
+
 def main():
+    # fixed input values (for debugging now)
     config = {
             "encrypt" : True,
             "key" : 1,
-            "input_text" : "",
+            "input_text" : "Test",
             "output_text" : ""
     }
-    config = user_input(config)
+    #config = user_input(config)
     print(config)
 
     if config["encrypt"]:
@@ -56,9 +70,6 @@ def main():
         #TODO:
         #config["output_text"] = dencrypt_text(config["key"], config["input_text"])
 
-    print("... ------Done------ ...")
-    print("Input_Text:  -> " + config["input_text"])
-    print("Output_Text: -> " + config["output_text"])
-    copy_text_to_clipboard(config["output_text"])
+    output_to_user(config)
 
 main()
