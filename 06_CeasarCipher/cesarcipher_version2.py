@@ -18,22 +18,28 @@ def user_input(config):
     while True:
         response = input("(e)ncrypt or (d)ecrypt? -> ").lower()
         if response.startswith('e'):
-            #set config -> 'e'
             config["encrypt"] = True
             break
         elif response.startswith('d'):
-            #set config -> 'd' decrypt
             config["encrypt"] = False
             break
         print("Wrong Input! Please enter a valid input => 'e' or 'd'");
-    # TODO: User Input: Key (shift number) number % 26
+
+    # User Input: Key (shift number) number % 26
+    while True:
+        response = input("enter key [0,25] -> ").lower()
+        if response.isdigit():
+            config["key"] = int(response)
+            break
+        print("Wrong Input! Please enter a valid input => '0,1,2,...,25");
     # TODO: User Input: Text (the text that should get en-/decrypted
     return config
 
 
 def main():
     config = {
-            "encrypt" : True
+            "encrypt" : True,
+            "key" : 1
     }
 
     config = user_input(config)
