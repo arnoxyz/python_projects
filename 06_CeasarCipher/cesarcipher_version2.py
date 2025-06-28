@@ -31,20 +31,34 @@ def user_input(config):
         print("Wrong Input! Please enter a valid input => '0,1,2,...,25");
 
     response = input("enter text -> ")
-    config["input_text"] = response
+    config["input_text"] = response.upper()
     return config
 
+def encrypt_text(key, input_text):
+    output_text = "";
+    return output_text;
 
 def main():
     config = {
             "encrypt" : True,
             "key" : 1,
-            "input_text" : ""
+            "input_text" : "",
+            "output_text" : ""
     }
-
     config = user_input(config)
     print(config)
 
-    copy_text_to_clipboard(config["input_text"])
+    if config["encrypt"]:
+        print("... encrypting input now ...")
+        config["output_text"] = encrypt_text(config["key"], config["input_text"])
+    else:
+        print("... decrypting input now ...")
+        #TODO:
+        #config["output_text"] = dencrypt_text(config["key"], config["input_text"])
+
+    print("... ------Done------ ...")
+    print("Input_Text:  -> " + config["input_text"])
+    print("Output_Text: -> " + config["output_text"])
+    copy_text_to_clipboard(config["output_text"])
 
 main()
