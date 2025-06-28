@@ -14,8 +14,32 @@ def copy_text_to_clipboard(text):
 
 text = "User Text!"
 # User Input: Encrypt/Decrypt
-# User Input: Key (shift number) number % 26
-# User Input: Text (the text that should get en-/decrypted
-# Text processing and saving/outputing result
+def user_input(config):
+    while True:
+        response = input("(e)ncrypt or (d)ecrypt? -> ").lower()
+        if response.startswith('e'):
+            #set config -> 'e'
+            config["encrypt"] = True
+            break
+        elif response.startswith('d'):
+            #set config -> 'd' decrypt
+            config["encrypt"] = False
+            break
+        print("Wrong Input! Please enter a valid input => 'e' or 'd'");
+    # TODO: User Input: Key (shift number) number % 26
+    # TODO: User Input: Text (the text that should get en-/decrypted
+    return config
 
-copy_text_to_clipboard(text)
+
+def main():
+    config = {
+            "encrypt" : True
+    }
+
+    config = user_input(config)
+    print(config)
+
+    # TODO: Text processing and saving/outputing result
+    copy_text_to_clipboard(text)
+
+main()
