@@ -44,6 +44,10 @@ def process_text(key, input_text, encrypt):
     output_text = "";
 
     for char in input_text:
+        if char == " ":
+            output_text = output_text + " "
+            continue
+
         num = Characters.find(char)
         if encrypt == True:
             num = (num + key) % 26
@@ -59,14 +63,14 @@ def output_to_user(config):
     copy_text_to_clipboard(config["output_text"])
 
 def main():
-    # fixed input values (for debugging now)
     config = {
             "encrypt" : True,
-            "key" : 3,
-            "input_text" : "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+            "key" : 1,
+            "input_text" : "",
             "output_text" : ""
     }
 
+    config = user_input(config)
     config["output_text"] = process_text(config["key"], config["input_text"], config["encrypt"])
     output_to_user(config)
 
