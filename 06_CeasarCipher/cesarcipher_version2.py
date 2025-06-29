@@ -24,7 +24,7 @@ def user_input(config):
         print("Wrong Input! Please enter a valid input => 'e' or 'd'");
 
     while True:
-        response = input("enter key [0,25] -> ").lower()
+        response = input("enter key [0,25] -> ")
         if response.isdigit():
             config["key"] = int(response)
             break
@@ -40,9 +40,8 @@ def encrypt_text(key, input_text):
 
     for char in input_text:
         num = Characters.find(char)
-        num = num + key
-        print(char)
-        print(num)
+        num = (num + key) % 26
+        output_text = output_text + Characters[num]
     return output_text;
 
 def output_to_user(config):
@@ -56,7 +55,7 @@ def main():
     config = {
             "encrypt" : True,
             "key" : 1,
-            "input_text" : "Test",
+            "input_text" : "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
             "output_text" : ""
     }
     #config = user_input(config)
