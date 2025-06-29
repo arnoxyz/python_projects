@@ -34,28 +34,26 @@ def user_input(config):
     config["input_text"] = response.upper()
     return config
 
-def encrypt_text(key, input_text):
+def process_text(key, input_text, encrypt):
+    if encrypt == True:
+        print("ecrypting input now ...")
+    else:
+        print("decrypting input now ...")
+
     Characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     output_text = "";
 
     for char in input_text:
         num = Characters.find(char)
-        num = (num + key) % 26
-        output_text = output_text + Characters[num]
-    return output_text;
-
-def decrypt_text(key, input_text):
-    Characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-    output_text = "";
-
-    for char in input_text:
-        num = Characters.find(char)
-        num = (num - key) % 26
+        if encrypt == True:
+            num = (num + key) % 26
+        else:
+            num = (num - key) % 26
         output_text = output_text + Characters[num]
     return output_text;
 
 def output_to_user(config):
-    print("... ------Done------ ...")
+    print("Done")
     print("Input_Text:  -> " + config["input_text"])
     print("Output_Text: -> " + config["output_text"])
     copy_text_to_clipboard(config["output_text"])
@@ -68,16 +66,8 @@ def main():
             "input_text" : "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
             "output_text" : ""
     }
-    #config = user_input(config)
-    print(config)
 
-    if config["encrypt"]:
-        print("... encrypting input now ...")
-        config["output_text"] = encrypt_text(config["key"], config["input_text"])
-    else:
-        print("... decrypting input now ...")
-        config["output_text"] = dencrypt_text(config["key"], config["input_text"])
-
+    config["output_text"] = process_text(config["key"], config["input_text"], config["encrypt"])
     output_to_user(config)
 
 main()
