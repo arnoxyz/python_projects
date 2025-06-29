@@ -44,6 +44,16 @@ def encrypt_text(key, input_text):
         output_text = output_text + Characters[num]
     return output_text;
 
+def decrypt_text(key, input_text):
+    Characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    output_text = "";
+
+    for char in input_text:
+        num = Characters.find(char)
+        num = (num - key) % 26
+        output_text = output_text + Characters[num]
+    return output_text;
+
 def output_to_user(config):
     print("... ------Done------ ...")
     print("Input_Text:  -> " + config["input_text"])
@@ -54,7 +64,7 @@ def main():
     # fixed input values (for debugging now)
     config = {
             "encrypt" : True,
-            "key" : 1,
+            "key" : 3,
             "input_text" : "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
             "output_text" : ""
     }
@@ -66,8 +76,7 @@ def main():
         config["output_text"] = encrypt_text(config["key"], config["input_text"])
     else:
         print("... decrypting input now ...")
-        #TODO:
-        #config["output_text"] = dencrypt_text(config["key"], config["input_text"])
+        config["output_text"] = dencrypt_text(config["key"], config["input_text"])
 
     output_to_user(config)
 
