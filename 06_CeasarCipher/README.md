@@ -67,3 +67,8 @@ source venv/bin/acivate
 ```
 pip install pyperclip
 ```
+## For Version3: Customizable Wheel
+Change that constant to the values that will be accepted and shifted.
+```
+SYMBOLS_ON_THE_WHEEL = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz123456789%€!?&%$§*+#"
+```
