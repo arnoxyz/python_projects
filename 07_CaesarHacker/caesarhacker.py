@@ -1,7 +1,7 @@
 # Implementaion of
+Characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 def decrypt_text(key, input_text):
-    Characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     output_text = "";
 
     for char in input_text:
@@ -9,7 +9,7 @@ def decrypt_text(key, input_text):
             output_text = output_text + " "
             continue
         num = Characters.find(char)
-        num = (num - key) % 26
+        num = (num - key) % len(Characters)
         output_text = output_text + Characters[num]
     return output_text;
 
@@ -24,8 +24,11 @@ def main():
             "output_text" : ""
     }
 
-    config["input_text"] = input("Input cesar encrypted text -> ")
-    config["output_text"] = decrypt_text(config["key"], config["input_text"])
-    output_to_user(config)
+    config["input_text"] = input("Input cesar encrypted text -> ").upper()
+
+    for i in range(0,len(Characters)):
+        config["key"] = i
+        config["output_text"] = decrypt_text(config["key"], config["input_text"])
+        output_to_user(config)
 
 main()
