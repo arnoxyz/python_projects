@@ -30,7 +30,18 @@ def main():
                 "year" : 2025
     }
 
-    config = user_input(config)
-    print(calendar.month(config["year"], config["month"]))
+    # fixed input for now
+    #config = user_input(config)
+
+
+    #calendar_str = calendar.month(config["year"], config["month"]);
+
+    # format calendar
+    c = calendar.Calendar()
+    weeks = c.monthdayscalendar(2025, 6)
+
+    for week in weeks:
+        print(" ".join(f"{day:02}" if day != 0 else "  " for day in week))
+
 
 main()
