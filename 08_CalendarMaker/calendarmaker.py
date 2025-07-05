@@ -29,19 +29,27 @@ def main():
                 "month" : 6,
                 "year" : 2025
     }
-
     # fixed input for now
     #config = user_input(config)
 
-
     #calendar_str = calendar.month(config["year"], config["month"]);
-
-    # format calendar
     c = calendar.Calendar()
     weeks = c.monthdayscalendar(2025, 6)
 
+
+
+    # Weekday headers
+    headers = ["SU", "MO", "TU", "WE", "TH", "FR", "SA"]
+    print()
+    print("|" + "|".join(["----MO----"] ) + "|", end="")
+    print("|" + "|".join(["----DI----"] ) + "|", end="")
+    print("|" + "|".join(["----MI----"] ) + "|", end="")
+    print("|" + "|".join(["----DO----"] ) + "|", end="")
+    print("|" + "|".join(["----FR----"] ) + "|", end="")
+    print("|" + "|".join(["----SA----"] ) + "|", end="")
+    print("|" + "|".join(["----SO----"] ) + "|", end="")
+
     for week in weeks:
         print(" ".join(f"{day:02}" if day != 0 else "  " for day in week))
-
 
 main()
