@@ -32,24 +32,33 @@ def main():
     # fixed input for now
     #config = user_input(config)
 
-    #calendar_str = calendar.month(config["year"], config["month"]);
-    c = calendar.Calendar()
-    weeks = c.monthdayscalendar(2025, 6)
-
-
-
     # Weekday headers
     headers = ["SU", "MO", "TU", "WE", "TH", "FR", "SA"]
     print()
     print("|" + "|".join(["----MO----"] ) + "|", end="")
-    print("|" + "|".join(["----DI----"] ) + "|", end="")
-    print("|" + "|".join(["----MI----"] ) + "|", end="")
-    print("|" + "|".join(["----DO----"] ) + "|", end="")
-    print("|" + "|".join(["----FR----"] ) + "|", end="")
-    print("|" + "|".join(["----SA----"] ) + "|", end="")
-    print("|" + "|".join(["----SO----"] ) + "|", end="")
+    print("" + "|".join(["----DI----"] ) + "", end="")
+    print("|" + "|".join(["----MI----"] ) + "", end="")
+    print("|" + "|".join(["----DO----"] ) + "", end="")
+    print("|" + "|".join(["----FR----"] ) + "", end="")
+    print("|" + "|".join(["----SA----"] ) + "", end="")
+    print("|" + "|".join(["----SO----"] ) + "|")
 
+    c = calendar.Calendar(firstweekday=0) # start with MO as first weekday
+    weeks = c.monthdays2calendar(2025, 6)
+
+    # Print each week
     for week in weeks:
-        print(" ".join(f"{day:02}" if day != 0 else "  " for day in week))
+        # First line: day number
+        line1 = "|".join( f"       {day:2} " if day != 0 else "          " for (day, _) in week)
+        print("|" + line1 + "|")
+
+        # 3 blank lines per cell
+        for _ in range(3):
+            print("|" + "|".join(["          "] * 7) + "|")
+
+        # Separator line
+        print("+" + "+".join(["----------"] * 7) + "+") # start with MO as first weekday
+    #for week in weeks:
+    #    print(" ".join(f"{day:02}" if day != 0 else "  " for day in week))
 
 main()
