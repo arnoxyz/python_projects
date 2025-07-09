@@ -9,11 +9,11 @@ MONTHS = ('January', 'February', 'March', 'April', 'May', 'June', 'July', 'Augus
 def user_input(config):
     while True:
         config["month"] = input("Input a month (1,2,3...) -> ")
-        if config["month"].isdigit():
+        if config["month"].isdigit() and int(config["month"]) >= 1 and int(config["month"]) <= 12:
             config["month"] = int(config["month"])
             break;
         else:
-            print("Please insert only a digit for month")
+            print("Please insert only a digit for month (1,2,3,...,11,12)")
 
     while True:
         config["year"] = input("Input a year(1,2,3...) -> ")
@@ -22,8 +22,15 @@ def user_input(config):
             break;
         else:
             print("Please insert only a digit for year")
+    return config
 
-    return config;
+def get_calendar(year, month):
+    cal_str = "" #whole calendar saved as text
+
+    #header
+    cal_str += (" " * 34) + MONTHS[month - 1] + " " + str(year) + '\n'
+    cal_str += "...Sunday.....Monday....Tuesday...Wednesday...Thursday.... Friday....Saturday..\n"
+    print(cal_str)
 
 
 
@@ -33,9 +40,8 @@ def main():
                 "year" : 2025
     }
 
-    config = user_input(config)
-    print(config)
-
+    #config = user_input(config)
+    get_calendar(config["year"], config["month"])
 
 
 main()
