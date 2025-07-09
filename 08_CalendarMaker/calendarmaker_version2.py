@@ -42,8 +42,10 @@ def get_calendar(year, month):
         current_date -= datetime.timedelta(days=1)
 
     while True:
+        #start h_line (seperator)
         cal_str += h_line
 
+        #day number line
         day_number_row = ""
         for i in range(7):
             day_number_label = str(current_date.day).rjust(2)
@@ -51,6 +53,7 @@ def get_calendar(year, month):
             current_date += datetime.timedelta(days=1)
         day_number_row += "|\n"
 
+        #add 3 empty lines
         cal_str += day_number_row
         for i in range(3):
             cal_str += blank_row
@@ -65,6 +68,12 @@ def get_calendar(year, month):
     print(cal_str)
     return cal_str
 
+def save_output(output_text, config):
+    calendar_name = "calendar_{}_{}.txt".format(config["year"],config["month"])
+    with open(calendar_name, "w") as file:
+        file.write(output_text)
+    print("Saved to " + "./"+calendar_name)
+
 
 
 def main():
@@ -75,6 +84,7 @@ def main():
 
     config = user_input(config)
     output_text = get_calendar(config["year"], config["month"])
+    save_output(output_text, config)
 
 
 
