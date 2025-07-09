@@ -29,7 +29,6 @@ def main():
                 "month" : 6,
                 "year" : 2025
     }
-    # fixed input for now
     config = user_input(config)
 
     # Weekday headers
