@@ -30,7 +30,7 @@ def main():
                 "year" : 2025
     }
     # fixed input for now
-    #config = user_input(config)
+    config = user_input(config)
 
     # Weekday headers
     headers = ["SU", "MO", "TU", "WE", "TH", "FR", "SA"]
@@ -44,7 +44,7 @@ def main():
     print("|" + "|".join(["----SO----"] ) + "|")
 
     c = calendar.Calendar(firstweekday=0) # start with MO as first weekday
-    weeks = c.monthdays2calendar(2025, 6)
+    weeks = c.monthdays2calendar(config["year"], config["month"])
 
     # Print each week
     for week in weeks:
