@@ -25,12 +25,45 @@ def user_input(config):
     return config
 
 def get_calendar(year, month):
+    h_line = ('+----------' * 7) + '+\n'
+    blank_row = ('|          ' * 7) + '|\n'
+
     cal_str = "" #whole calendar saved as text
 
     #header
     cal_str += (" " * 34) + MONTHS[month - 1] + " " + str(year) + '\n'
-    cal_str += "...Sunday.....Monday....Tuesday...Wednesday...Thursday.... Friday....Saturday..\n"
+    cal_str += "..Sunday.....Monday....Tuesday....Wednesday...Thursday.... Friday....Saturday..\n"
+
+    #main section - week days
+    current_date = datetime.date(year, month, 1)
+
+    #go back until its sunday
+    while current_date.weekday() != 6:
+        current_date -= datetime.timedelta(days=1)
+
+    while True:
+        cal_str += h_line
+
+        day_number_row = ""
+        for i in range(7):
+            day_number_label = str(current_date.day).rjust(2)
+            day_number_row += "|" + day_number_label + (" " * 8)
+            current_date += datetime.timedelta(days=1)
+        day_number_row += "|\n"
+
+        cal_str += day_number_row
+        for i in range(3):
+            cal_str += blank_row
+
+        #loop until next month starts
+        if current_date.month != month:
+            break
+
+    #footer
+    cal_str += h_line
+
     print(cal_str)
+    return cal_str
 
 
 
@@ -40,8 +73,9 @@ def main():
                 "year" : 2025
     }
 
-    #config = user_input(config)
-    get_calendar(config["year"], config["month"])
+    config = user_input(config)
+    output_text = get_calendar(config["year"], config["month"])
+
 
 
 main()
