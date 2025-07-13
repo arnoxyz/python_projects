@@ -66,9 +66,21 @@ def main():
                 "player1 got apple" : True if random_bit() == 1 else False
     }
 
+    input("Player 2 please close your eyes... (Press Enter to Continue)")
+
     if (config["player1 got apple"]):
         draw_open_boxes1()
+        print("Player 1 at the moment you got the apple with box1")
     else:
         draw_open_boxes2()
+        print("Player 1 at the moment you got the box with no apple")
+
+
+    input("Player 1 if you are done ... (Press Enter to Continue)")
+    print("\n" * 100);
+
+    draw_boxes()
+    input("Player 2 can decide now to switch the boxes or not -> Switch Boxes? (y/n): ")
+
 
 main()
