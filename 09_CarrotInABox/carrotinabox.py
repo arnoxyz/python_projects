@@ -1,4 +1,4 @@
-# Implementaion of a two player game called: Carrot In a Box
+# Implementaion of a two player game called: Apple In a Box
 
 def draw_boxes():
     box = ""
@@ -15,8 +15,54 @@ def draw_boxes():
 
     print(box)
 
+def draw_open_box1():
+    box = ""
+    top    =     "+        +  +--------+"
+    empty_line = "|        |  |        |"
+    middle =     "|  BOX1  |  |  BOX2  |"
+    bottom =     "+--------+  +--------+"
+
+    box += top + "\n"
+    box += empty_line + "\n"
+    box += middle + "\n"
+    box += empty_line + "\n"
+    box += bottom + "\n"
+    print(box)
+
+def draw_open_boxes1():
+    box = ""
+    top    =     "+ (---)  +  +        +"
+    empty_line = "|        |  |        |"
+    middle =     "|  BOX1  |  |  BOX2  |"
+    bottom =     "+--------+  +--------+"
+
+    box += top + "\n"
+    box += empty_line + "\n"
+    box += middle + "\n"
+    box += empty_line + "\n"
+    box += bottom + "\n"
+    print(box)
+
+def draw_open_boxes2():
+    box = ""
+    top    =     "+        +  +  (---) +"
+    empty_line = "|        |  |        |"
+    middle =     "|  BOX1  |  |  BOX2  |"
+    bottom =     "+--------+  +--------+"
+
+    box += top + "\n"
+    box += empty_line + "\n"
+    box += middle + "\n"
+    box += empty_line + "\n"
+    box += bottom + "\n"
+    print(box)
+
+
 def main():
-    print("Welcome to Carrot in a Box!")
+    print("Welcome to Apple in a Box!")
     draw_boxes()
+
+    draw_open_boxes1()
+    draw_open_boxes2()
 
 main()
