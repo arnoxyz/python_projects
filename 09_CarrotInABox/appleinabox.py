@@ -21,9 +21,12 @@ def draw_boxes():
 
     print(box)
 
-def draw_open_boxes1():
+def draw_open_boxes1(config):
     box = ""
-    names  =     "-PLAYER 1-  -PLAYER 2-"
+    if (config["default"]):
+        names  =     "-PLAYER 1-  -PLAYER 2-"
+    else:
+        names  =     "-PLAYER 2-  -PLAYER 1-"
     empty =      "                      "
     top    =     "  (---)               "
     empty_line = "|        |  |        |"
@@ -39,9 +42,13 @@ def draw_open_boxes1():
     box += bottom + "\n"
     print(box)
 
-def draw_open_boxes2():
+def draw_open_boxes2(config):
     box = ""
-    names  =     "-PLAYER 1-  -PLAYER 2-"
+    if (config["default"]):
+        names  =     "-PLAYER 1-  -PLAYER 2-"
+    else:
+        names  =     "-PLAYER 2-  -PLAYER 1-"
+
     empty =      "                      "
     top    =     "               (---)  "
     empty_line = "|        |  |        |"
@@ -63,16 +70,17 @@ def main():
     draw_boxes()
 
     config = {
-                "player1 got apple" : True if random_bit() == 1 else False
+                "player1 got apple" : True if random_bit() == 1 else False,
+                "default" : True
     }
 
     input("Player 2 please close your eyes... (Press Enter to Continue)")
 
     if (config["player1 got apple"]):
-        draw_open_boxes1()
+        draw_open_boxes1(config)
         print("Player 1 at the moment you got the apple with box1")
     else:
-        draw_open_boxes2()
+        draw_open_boxes2(config)
         print("Player 1 at the moment you got the box with no apple")
 
 
@@ -80,7 +88,16 @@ def main():
     print("\n" * 100);
 
     draw_boxes()
-    input("Player 2 can decide now to switch the boxes or not -> Switch Boxes? (y/n): ")
+    player2_choice = input("Player 2 can decide now to switch the boxes or not -> Switch Boxes? (y/n): ")
+    if 'y' in player2_choice.lower():
+        config["default"] = False
+        config["player1 got apple"] = not config["player1 got apple"]
 
+    if (config["player1 got apple"]):
+        draw_open_boxes1(config)
+        print("Player 1 Won")
+    else:
+        draw_open_boxes2(config)
+        print("Player 2 Won")
 
 main()
