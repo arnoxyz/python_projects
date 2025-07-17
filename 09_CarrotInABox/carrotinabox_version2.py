@@ -1,44 +1,26 @@
 # Other implementation of the game carrot in a box
 import random
 
+def get_names(players):
+    input("Press Enter to begin...")
+    players["player1_name"] = input("Name Player1: ")
+    players["player2_name"] = input("Name Player2: ")
+    return players;
+
+
+    return players
+
+
+
 def main():
-    input("Press Enter to begin...")
-    p1_name = input("Name Player1: ")
-    p2_name = input("Name Player2: ")
-    player_names = p1_name[:11].center(11) + "    " + p2_name[:11].center(11)
-    print(player_names)
+    players = {
+            "player1_name" : "Player 1",
+            "player2_name" : "Player 2"
+    }
 
-    print('''HERE ARE TWO BOXES:
-          __________   __________
-         /        /|  /         /|
-        +---------+|  +---------+|
-        |         || |          ||
-        | BOX1    |/ | BOX2     |/
-        +--------+/  +---------+/''')
+    players = get_names(players);
+    print(players)
 
-
-    print(p2_name + " please close your eyes")
-    input("Press Enter to begin...")
-
-    print('\n' * 100)
-    print(p1_name + ' here is the inside of your box:')
-    if random.randint(1, 2) == 1:
-        carrotInFirstBox = True
-        print("\n \n You got the carrot :) \n \n")
-    else:
-        carrotInFirstBox = False
-        print("\n \n You don't the carrot :( \n \n")
-
-    input("Press Enter to begin...")
-    print('\n' * 100)
-
-    print(p2_name + ', do you want to swap boxes with ' + p1_name + '? y/n')
-    while True:
-        response = input('> ').upper()
-        if not (response.startswith('Y') or response.startswith('N')):
-            print("Invalid Input please Insert y or n");
-        else:
-            break
 
 
 main()
