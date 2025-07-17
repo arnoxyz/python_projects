@@ -20,16 +20,25 @@ def main():
     print(p2_name + " please close your eyes")
     input("Press Enter to begin...")
 
+    print('\n' * 100)
     print(p1_name + ' here is the inside of your box:')
     if random.randint(1, 2) == 1:
         carrotInFirstBox = True
-        print("You got the carrot")
+        print("\n \n You got the carrot :) \n \n")
     else:
         carrotInFirstBox = False
-        print("You don't got the carrot")
+        print("\n \n You don't the carrot :( \n \n")
 
     input("Press Enter to begin...")
     print('\n' * 100)
+
+    print(p2_name + ', do you want to swap boxes with ' + p1_name + '? y/n')
+    while True:
+        response = input('> ').upper()
+        if not (response.startswith('Y') or response.startswith('N')):
+            print("Invalid Input please Insert y or n");
+        else:
+            break
 
 
 main()
