@@ -119,12 +119,12 @@ def game(player_config):
             print("sum is even")
             if(player_config["decision"] == "e"):
                 player_config["credit"] = player_config["credit"] + player_config["bet"]*2
-                print("You won! Your credit is now: " + player_config["credit"])
+                print("You won! Your credit is now: " + str(player_config["credit"]))
         else:
             print("sum is odd")
             if(player_config["decision"] == "o"):
                 player_config["credit"] = player_config["credit"] + player_config["bet"]*2
-                print("You won! Your credit is now: " + player_config["credit"])
+                print("You won! Your credit is now: " + str(player_config["credit"]))
 
 def main():
     player_config = {
