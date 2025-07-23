@@ -79,12 +79,13 @@ def set_player_decision(player_config):
 
 def set_player_bet(player_config):
     print("Your credit is " + str(player_config["credit"]))
+    house_betting_cost = 5
 
     while True:
         user_input = input("How much do you want to bet? > ")
         if user_input.isdigit():
             if player_config["credit"] >= int(user_input):
-                player_config["credit"] = player_config["credit"] - int(user_input)
+                player_config["credit"] = player_config["credit"] - (int(user_input) + house_betting_cost)
                 player_config["bet"] = int(user_input)
                 break
             else:
@@ -92,20 +93,38 @@ def set_player_bet(player_config):
         else:
             print("Invlaid input insert a valid number")
 
-def game():
-    # show empty dice
-    draw_dice("empty", "empty")
+def game(player_config):
+    while player_config["credit"] > 0:
+        user_input = input("play another round of cho/han? (y)es/(n)o > ").lower()
+        if not (user_input.startswith("y")):
+            break
 
-    # gen two numbers
-    dice1 = throw_dice()
-    dice2 = throw_dice()
+        # show empty dice
+        draw_dice("empty", "empty")
 
-    # betting
+        # gen two numbers
+        dice1 = throw_dice()
+        dice2 = throw_dice()
+        dice_sum = dice1+dice2
 
-    # show solution
-    draw_dice(dice1, dice2)
+        # betting
+        set_player_bet(player_config)
+        set_player_decision(player_config)
 
-    # win or lose
+        # show solution
+        draw_dice(dice1, dice2)
+
+        # win or lose
+        if (dice_sum % 2) == 0:
+            print("sum is even")
+            if(player_config["decision"] == "e"):
+                player_config["credit"] = player_config["credit"] + player_config["bet"]*2
+                print("You won! Your credit is now: " + player_config["credit"])
+        else:
+            print("sum is odd")
+            if(player_config["decision"] == "o"):
+                player_config["credit"] = player_config["credit"] + player_config["bet"]*2
+                print("You won! Your credit is now: " + player_config["credit"])
 
 def main():
     player_config = {
@@ -114,9 +133,7 @@ def main():
         "decision" : ""
     }
 
-    set_player_bet(player_config)
-    set_player_decision(player_config)
-
-    print(player_config)
+    game(player_config)
+    print("Thanks for playing your final score is: " + str(player_config["credit"]))
 
 main()
