@@ -62,11 +62,9 @@ def get_headline(number):
 
     return headline
 
-
 def main():
-    print("Hello World")
-    #number_of_headlines = get_input()
-    number_of_headlines = 1
+    number_of_headlines = get_input()
+    print("-"*80)
     gen_headline(number_of_headlines)
 
 main()
