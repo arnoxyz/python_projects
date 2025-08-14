@@ -16,9 +16,14 @@ def get_input():
         if user_input.isdigit():
             return int(user_input)
 
-def gen_headline():
-    headline = random.randint(1,8)
-    print(headline)
+def gen_headline(number_of_headlines):
+    for i in range(number_of_headlines):
+        headline_number = random.randint(1,8)
+        headline = get_headline(headline_number)
+        print(headline)
+
+def get_headline(number):
+    return "test"
 
 
 def main():
@@ -26,7 +31,6 @@ def main():
     #number_of_headlines = get_input()
     number_of_headlines = 1
 
-    for i in range(number_of_headlines):
-        gen_headline()
+    gen_headline(number_of_headlines)
 
 main()
