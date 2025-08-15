@@ -7,16 +7,19 @@ def get_user_input():
         if number.isdigit():
             return int(number)
 
-def generate_collatz_sequence(number):
-    if (number % 2) == 0:
-        return int(number/2)
-    else:
-        return 3*number+1
+def generate_collatz_sequence(number, idx):
+    print(number, end=" ")
+
+    if idx != 1:
+        if (number % 2) == 0:
+            generate_collatz_sequence(int(number/2), idx-1)
+        else:
+            generate_collatz_sequence(3*number+1, idx-1)
 
 def main():
     #number = get_user_input()
     number = 20
-    print(generate_collatz_sequence(number))
+    generate_collatz_sequence(number, 100)
 
 
 main()
