@@ -1,17 +1,37 @@
 # Implementation of the game of life
-import copy
+import copy, random
 
 ALIVE = "1"
 DEAD  = "0"
+
+def fill_grid_random(width, height):
+    grid = {}
+    for x in range(width):
+        for y in range(height):
+            if random.randint(0, 1) == 0:
+                grid[(x, y)] = ALIVE
+            else:
+                grid[(x, y)] = DEAD
+
+    return grid
 
 def fill_grid(width, height):
     grid = {}
     for x in range(width):
         for y in range(height):
             grid[(x, y)] = DEAD
-            #grid[(x, y)] = ALIVE
 
-    return grid;
+
+    # check the two rules
+    #(x,y)
+    grid[1,1] = ALIVE
+    grid[2,2] = ALIVE
+    grid[0,2] = ALIVE
+
+    grid[3,5] = ALIVE
+    grid[4,4] = ALIVE
+    grid[4,5] = ALIVE
+    return grid
 
 def print_grid(grid, width, height):
     for y in range(height):
@@ -54,14 +74,16 @@ def check_grid(grid, width, height):
             else:
                 next_grid[(x,y)] = DEAD
 
-    print_grid(next_grid, width, height)
+    return next_grid
 
 def main():
     width = 10
     height = 10
 
     grid = fill_grid(width, height)
-    #print_grid(grid, width, height)
-    check_grid(grid, width, height)
+    print_grid(grid, width, height)
+    print("-----")
+    grid = check_grid(grid, width, height)
+    print_grid(grid, width, height)
 
 main()
