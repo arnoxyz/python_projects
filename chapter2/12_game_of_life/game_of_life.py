@@ -1,11 +1,10 @@
+# Implementation of the game of life
+import copy, random
 
 # Always generated a SIZE times SIZE Grid
 SIZE = 10
 
-
-# Implementation of the game of life
-import copy, random
-
+# Symbol to use to display alive and dead cells
 ALIVE = "1"
 DEAD  = "0"
 
@@ -81,10 +80,17 @@ def check_grid(grid):
     return next_grid
 
 def main():
-    grid = fill_grid()
+    grid = fill_grid_random()
     print_grid(grid)
-    print("-----")
-    grid = check_grid(grid)
-    print_grid(grid)
+
+    while True:
+        grid = check_grid(grid)
+
+        input_str =  input("Press enter to display the next generation or (q)uit > ").lower()
+        if "quit" in input_str or "q" in input_str:
+            break
+
+        print("\n"*10)
+        print_grid(grid)
 
 main()
