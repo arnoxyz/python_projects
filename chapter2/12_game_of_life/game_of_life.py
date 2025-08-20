@@ -90,7 +90,7 @@ def main():
         if "quit" in input_str or "q" in input_str:
             break
 
-        print("\n"*10)
+        print("\n"*100)
         print_grid(grid)
 
 main()
