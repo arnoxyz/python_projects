@@ -1,13 +1,18 @@
+
+# Always generated a SIZE times SIZE Grid
+SIZE = 10
+
+
 # Implementation of the game of life
 import copy, random
 
 ALIVE = "1"
 DEAD  = "0"
 
-def fill_grid_random(width, height):
+def fill_grid_random():
     grid = {}
-    for x in range(width):
-        for y in range(height):
+    for x in range(SIZE):
+        for y in range(SIZE):
             if random.randint(0, 1) == 0:
                 grid[(x, y)] = ALIVE
             else:
@@ -15,12 +20,11 @@ def fill_grid_random(width, height):
 
     return grid
 
-def fill_grid(width, height):
+def fill_grid():
     grid = {}
-    for x in range(width):
-        for y in range(height):
+    for x in range(SIZE):
+        for y in range(SIZE):
             grid[(x, y)] = DEAD
-
 
     # check the two rules
     #(x,y)
@@ -33,26 +37,26 @@ def fill_grid(width, height):
     grid[4,5] = ALIVE
     return grid
 
-def print_grid(grid, width, height):
-    for y in range(height):
-        for x in range(width):
+def print_grid(grid):
+    for y in range(SIZE):
+        for x in range(SIZE):
             print(grid[(x,y)], end="")
         print()
 
-def check_grid(grid, width, height):
+def check_grid(grid):
     actual_value = 0;
     next_grid = copy.deepcopy(grid)
 
-    for x in range(width):
-        for y in range(height):
+    for x in range(SIZE):
+        for y in range(SIZE):
             current_cell = grid[(x,y)]
             alive_cells = 0
 
             #get neighbor cells (all cells around the actual_cell)
-            left_cell   = grid[(x - 1) % width, y]
-            right_cell  = grid[(x + 1) % width, y]
-            top_cell    = grid[x, (y - 1) % height]
-            bottom_cell = grid[x, (y + 1) % height]
+            left_cell   = grid[(x - 1) % SIZE, y]
+            right_cell  = grid[(x + 1) % SIZE, y]
+            top_cell    = grid[x, (y - 1) % SIZE]
+            bottom_cell = grid[x, (y + 1) % SIZE]
 
             #count all neighbors that are alive
             if left_cell == ALIVE:
@@ -77,13 +81,10 @@ def check_grid(grid, width, height):
     return next_grid
 
 def main():
-    width = 10
-    height = 10
-
-    grid = fill_grid(width, height)
-    print_grid(grid, width, height)
+    grid = fill_grid()
+    print_grid(grid)
     print("-----")
-    grid = check_grid(grid, width, height)
-    print_grid(grid, width, height)
+    grid = check_grid(grid)
+    print_grid(grid)
 
 main()
