@@ -1,0 +1,55 @@
+[Back](../../)
+# Game of Life
+Implementation of the [Game of Life](https://de.wikipedia.org/wiki/Conways_Spiel_des_Lebens)
+
+## Example:
+```
+~/Projects/chapter2/12_game_of_life$ python3 game_of_life.py
+1000101001
+1111111101
+1001101100
+1000010101
+0110010111
+1101001000
+1001000101
+0000100000
+1110000010
+1000110001
+Press enter to display the next generation or (q)uit >
+
+1000100001
+0111010101
+1001101101
+1000001111
+0100001111
+1110000101
+1000000000
+0000000000
+1100000001
+1000100001
+Press enter to display the next generation or (q)uit >
+
+1000000001
+0011001001
+1001011111
+1000001010
+0000001011
+1100000011
+0000000000
+0000000000
+1000000001
+1000000001
+Press enter to display the next generation or (q)uit >
+
+1000000001
+1001000001
+1000000111
+0000001110
+1000000011
+1000000011
+0000000000
+0000000000
+1000000001
+1000000001
+Press enter to display the next generation or (q)uit >
+```

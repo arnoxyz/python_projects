@@ -1,4 +1,4 @@
-[back](../../)
+[Back](../../)
 # Bagels-Game
 Logic game where you have to guess a three-digit number.
 User has 10 guesses per game.
