@@ -1,10 +1,10 @@
-# Python Learning Log
+# python_projects
 I want to review and learn new Python concepts.
 This is best done through *learning by doing*, so I'll start by writing small Python programs.
 For this, I'm using the book **_The Big Book of Small Python Projects_** by *Al Sweigart*.
 
-## Overview
-### Chapter1
+## overview
+### chapter1
 #### [0_bagels](./chapter1/0_bagels/)
 A number-guessing game, similar to the High-Low game.
 #### [1_birthday_paradox](./chapter1/1_birthday_paradox/)
@@ -30,7 +30,7 @@ Neatly prints a calendar for a given date in the console.
 A two-player bluffing game. Each
 #### [9_cho_han](./chapter1/9_cho_han/)
 A simple Japanese dice game in which the player bets on whether the sum of two dice is even ("Cho") or odd ("Han").
-### Chapter2
+### chapter2
 #### [10_headline_generator](./chapter2/10_headline_generator/)
 Creates automatically random headlines.
 #### [11_collatz_sequence](./chapter2/11_collatz_sequence/)
