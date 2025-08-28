@@ -11,9 +11,7 @@ def createCave(start):
     print(line, flush=True)
 
 
-
 def main():
-    print("Hello World!")
     start = random.randint(0, 100)
     while True:
         choice = random.randint(0,2)

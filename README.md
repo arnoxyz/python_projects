@@ -37,3 +37,7 @@ Creates automatically random headlines.
 Create the collatz sequence just input integer >=1.
 #### [12_game_of_life](./chapter2/12_game_of_life/)
 Implementation of the game of life.
+#### [13_countdown](./chapter2/13_countdown/)
+Prints out a countdown using a ssd module (seven segment display).
+#### [14_cave](./chapter2/14_cave/)
+Prints out random cave pattern.
